@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+boto3 = "*"
+django-storages = "*"
+pillow = "*"
+keras = "*"
+opencv-python-headless = "*"
+numpy = "*"
+torch = "*"
+torchvision = "*"
+timm = "*"
+nltk = "*"
+pandas = "*"
+tensorflow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
