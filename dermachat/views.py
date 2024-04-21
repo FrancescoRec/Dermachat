@@ -16,26 +16,38 @@ import numpy as np
 import torch
 import torchvision.transforms as transforms
 import timm
+import boto3
+import os
 
-# def download_model_from_s3(bucket_name, key, local_file_path):
-#     s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID,
-#                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-#                          aws_session_token=AWS_SECRET_TOKEN)
-#     try:
-#         response = s3.get_object(Bucket=bucket_name, Key=key)
-#         with open(local_file_path, 'wb') as f:
-#             f.write(response['Body'].read())
-#         return True
-#     except Exception as e:
-#         print(f"Error downloading model file from S3: {e}")
-#         return False
+from pipino_doctorino.settings import Credentials
 
-# Load the Xception model
+s3 = boto3.client('s3')
+
+# Assuming credentials contains AWS credentials
+credentials = Credentials()
+model_path = credentials.AWS_STORAGE_PATH
+bucket_name = credentials.AWS_STORAGE_BUCKET_NAME
+
+local_model_dir = 'models'
+
+# Create the local directory if it doesn't exist
+if not os.path.exists(local_model_dir):
+    os.makedirs(local_model_dir)
+
+# Download model from S3 to the local directory
+local_model_path = os.path.join(local_model_dir, os.path.basename(model_path))
+s3.download_file(bucket_name, model_path, local_model_path)
+
+# Initialize Xception model
 model = timm.create_model('legacy_xception', pretrained=False)
 num_ftrs = model.fc.in_features
-model.fc = torch.nn.Linear(num_ftrs, 2)
-checkpoint = torch.load('models/Xception_model.pth')
+model.fc = torch.nn.Linear(num_ftrs, 2)  # Modify fully connected layer for your task
+
+# Load model state dictionary from the locally downloaded file
+checkpoint = torch.load(local_model_path)
 model.load_state_dict(checkpoint)
+
+# Set model to evaluation mode
 model.eval()
 
 # Function to preprocess the image

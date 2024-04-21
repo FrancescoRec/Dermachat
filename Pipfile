@@ -8,7 +8,6 @@ django = "*"
 boto3 = "*"
 django-storages = "*"
 pillow = "*"
-keras = "*"
 opencv-python-headless = "*"
 numpy = "*"
 torch = "*"
@@ -17,6 +16,8 @@ timm = "*"
 nltk = "*"
 pandas = "*"
 tensorflow = "*"
+torchaudio = "*"
+keras = "*"
 
 [dev-packages]
 

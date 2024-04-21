@@ -13,13 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 # import boto3
 # from storages.backends.s3boto3 import S3Boto3Storage
 
-# class Credentials():
-#     AWS_ACCESS_KEY_ID = 'ASIAXB7FCAWSJRR37IVG'
-#     AWS_SECRET_ACCESS_KEY = '2gkKoyJVOUqCF0yIhyPeG6OmX34gt9ISTVQeYXEl'
-#     AWS_SECRET_TOKEN = 'IQoJb3JpZ2luX2VjEAEaCXVzLXdlc3QtMiJHMEUCIDNWYA8HURQmlfft4cfJ4KDAOt3RH7WWtoOVrFyNWDvBAiEA714QfCmxQ+HqmiUos8/uQlJxO2YgT6AtMe5GIpfqY3cqqQIIShAAGgw0ODUyNzQ4MTM4NjAiDL+aa79r40slN0MigiqGAg9Iiapte0P/khXKWoNE374Bq3Co/Az5OPhISC1gZoYJMyewDa7JsL0ZfISLDyAzWG4on0jRHV5heTROSkxG0KBmXeWsqfZGJ1gOY2f22ZNaDIVzy6T5D5Ra8gmDVD/IGGVxa7Bm65L+j2vBLL/29CJziHDsRCFFbiHzxirDAr5oLUYv1JhrFZ74qlbiMK4ZL9td/qZi7QfkiU1Mw/eIAE7JNosFel8ppF4CA2rynAqf0JfvkIUr8Jd+X0iRJnkKHrIt9lD2qMRfdAd+LECOx9MAliquEkm+oX94WKoSruw1xTPQU76LERvZbXaUZT3KQklijCesIvTVvvKKW7SIf9Ujul5ySwYwoIqVsQY6nQFbCy14Q2FAPXU98hJEQo1IsSTSkNlXvX9dp0D4kUG1h54JNyQxB4poUwS4fE3F6G05M5ckp6FAkRX3kc5WCATe+IbwgUAhNOkWrwy/T9sYddT7O+uemLVDj6nmZDED8gaXmgsuSJdUpDP7LSJU4HsghjZRFeQP+17cDvRaQVQkdbN1YZf812XpHN0MHcZlJY/5vAnCUfrLHFExOSmG'
-#     AWS_STORAGE_BUCKET_NAME = 'provafinalproject'
-#     AWS_STORAGE_PATH = 'models/cnn/skin_cancer_model.pkl'
-#     AWS_PICKLE_MODEL = 'skin_cancer_model.pkl'
+class Credentials():
+    AWS_STORAGE_BUCKET_NAME = 'provafinalproject'
+    AWS_STORAGE_PATH = 'models/cnn/Xception_model.pth'
+
 
 # # Configure static and media file storage
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
