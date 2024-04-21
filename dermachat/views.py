@@ -18,6 +18,7 @@ import torchvision.transforms as transforms
 import timm
 import boto3
 import os
+import datetime
 
 from pipino_doctorino.settings import Credentials
 
@@ -34,9 +35,28 @@ local_model_dir = 'models'
 if not os.path.exists(local_model_dir):
     os.makedirs(local_model_dir)
 
-# Download model from S3 to the local directory
+# Local path to save the model
 local_model_path = os.path.join(local_model_dir, os.path.basename(model_path))
-s3.download_file(bucket_name, model_path, local_model_path)
+
+# Initialize S3 client
+s3 = boto3.client('s3')
+
+# Check if the local model file exists
+if os.path.exists(local_model_path):
+    # Get last modified date of local model file
+    local_last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(local_model_path))
+    
+    # Get last modified date of model file on S3
+    response = s3.head_object(Bucket=bucket_name, Key=model_path)
+    s3_last_modified = response['LastModified'].replace(tzinfo=None)
+
+    # Compare last modified dates
+    if s3_last_modified > local_last_modified:
+        # Download the newer version from S3
+        s3.download_file(bucket_name, model_path, local_model_path)
+else:
+    # If the local file doesn't exist, download it from S3
+    s3.download_file(bucket_name, model_path, local_model_path)
 
 # Initialize Xception model
 model = timm.create_model('legacy_xception', pretrained=False)
