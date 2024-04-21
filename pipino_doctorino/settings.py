@@ -9,19 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-# import os
-# import boto3
-# from storages.backends.s3boto3 import S3Boto3Storage
 
 class Credentials():
     AWS_STORAGE_BUCKET_NAME = 'provafinalproject'
     AWS_STORAGE_PATH = 'models/cnn/Xception_model.pth'
-
-
-# # Configure static and media file storage
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATIC_URL = f'https://provafinalproject.s3.amazonaws.com/static/'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 from pathlib import Path
 
