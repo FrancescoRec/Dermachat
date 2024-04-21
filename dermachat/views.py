@@ -49,7 +49,7 @@ def preprocess_image(image):
     image = transform(image)
     return image.unsqueeze(0)  # Add batch dimension
 
-def dermachat(request):
+def upload_image(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():

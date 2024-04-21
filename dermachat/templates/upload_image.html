@@ -3,14 +3,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Upload Image</title>
+    <title>DermaChat</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
 </head>
 <body>
-    <h1>Upload Image</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <div class="header">
+            <h1>DermaChat</h1>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <h2>Images</h2>
+                <p>Upload a skin lesion image for classification</p>
+            </div>
+            <div class="main">
+                <form id="upload-form" method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="prediction-result">
+                    <!-- Prediction result will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include CSS styles -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            var formData = new FormData(this); 
+            fetch('{% url 'upload_image' %}', { 
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update prediction result in the DOM using JSON data
+                var resultDiv = document.getElementById('prediction-result');
+                resultDiv.innerHTML = "<h2>" + data.predicted_class + "</h2><p>The probability of the input skin image being classified as malignant is: " + data.prob_true + "</p>";
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
