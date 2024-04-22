@@ -1,0 +1,19 @@
+project_directory/
+│
+├── dermachat/
+│   └── ...  # files of the 'dermachat' Django app
+│
+├── pipino_doctorino/
+│   ├── settings.py
+│   ├── cnn
+│   ├── 
+│   └──
+│
+├── models/
+│   ├── cnn
+│   ├── 
+│   └──
+│
+├── manage.py
+├── Dockerfile
+└── requirements.txt

@@ -1,0 +1,14 @@
+django
+boto3
+django-storages
+pillow
+opencv-python-headless
+numpy
+torch
+torchvision
+timm
+nltk
+pandas
+tensorflow
+torchaudio
+keras
