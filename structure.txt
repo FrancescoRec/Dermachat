@@ -1,19 +1,43 @@
 project_directory/
 │
 ├── dermachat/
-│   └── ...  # files of the 'dermachat' Django app
+│   ├── static/
+│   │   ├── css/
+│   │   └── images/
+│   │   
+│   ├──templates/
+│   │   └──upload_image.html
+│   │
+│   ├── views.py
+│   ├── forms.py
+│   ├── urls.py
+│   ├── test.py
+│   └── ...
 │
 ├── pipino_doctorino/
 │   ├── settings.py
-│   ├── cnn
-│   ├── 
-│   └──
+│   ├── urls.py
+│   └── ...
 │
 ├── models/
 │   ├── cnn
-│   ├── 
-│   └──
+│   ├── llm-chatbot
+│   └── naive-bayes
 │
+├── EDA/
+│   ├── Fitzpatrick
+│   ├── DDI
+│   ├── combined
+│   └── new_images
+│   
 ├── manage.py
+│ 
+├── dockerignore
 ├── Dockerfile
+│ 
+├── pipfile
+├── pipfile.lock
+│ 
+├── gitignore
+│
 └── requirements.txt
