@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DermaChat</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="left-section">
+        <div class="image_container">
+            <div class="header">
+                <h1>DermaChat</h1>
+            </div>
+            <div class="content">
+                <!-- Upload Image Section -->
+                <div class="sidebar">
+                    <h2>Images</h2>
+                    <p>Upload a skin lesion image for classification</p>
+                    <form id="upload-form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit">Submit</button>
+                    </form>
+                    <div id="prediction-result">
+                        <!-- Prediction result will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <div class="container">
+            <!-- Chat display area -->
+            <div class="chat" id="chat">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <!-- Input field for user messages -->
+            <form id="message-form">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+
+    <!-- Include JavaScript -->
+    <script>
+        // JavaScript code for handling image upload
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            var formData = new FormData(this); 
+            fetch('{% url 'dermachat' %}', { 
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update prediction result in the DOM using JSON data
+                var resultDiv = document.getElementById('prediction-result');
+                resultDiv.innerHTML = "<h2>" + data.predicted_class + "</h2><p>The probability of the input skin image being classified as malignant is: " + data.prob_true + "</p>";
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // JavaScript code for handling chat interaction
+        document.getElementById("message-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var userInput = document.getElementById("user-input").value;
+            addMessage("You", userInput); // Add user message to chat display
+
+            // Clear input field
+            document.getElementById("user-input").value = "";
+
+            // Send user message to server for processing
+            fetch('/chatbot/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token
+                },
+                body: JSON.stringify({ user_input: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Add bot's response to chat display
+                addMessage("Bot", data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // Function to add a message to the chat display
+        function addMessage(speaker, message) {
+            var chat = document.getElementById("chat");
+            var messageElement = document.createElement("div");
+            messageElement.textContent = speaker + ": " + message;
+            chat.appendChild(messageElement);
+        }
+
+        // Function to get CSRF token from cookie
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+</body>
+</html>

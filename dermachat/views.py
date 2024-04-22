@@ -8,8 +8,7 @@ import torchvision.transforms as transforms
 import timm
 import os
 import datetime
-
-
+from .helpers import predict_class, get_response, load_data, process_symptoms
 from pipino_doctorino.settings import Credentials
 
 # Assuming credentials contains AWS credentials
@@ -89,15 +88,17 @@ def preprocess_image(image):
     image = transform(image)
     return image.unsqueeze(0)  
 
-def upload_image(request):
-    if request.method == 'POST':
+
+def dermachat_view(request):
+    # Handle image upload functionality
+    if request.method == 'POST' and 'image' in request.FILES:
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
             image_file = request.FILES['image']
             image_data = np.frombuffer(image_file.read(), np.uint8)
             image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
 
-            # Perform inference
+            # Perform image classification inference
             image_tensor = preprocess_image(image)
             with torch.no_grad():
                 output = model(image_tensor)
@@ -105,8 +106,35 @@ def upload_image(request):
                 prob_true = probabilities[1].item()
                 predicted_class = "Melanoma" if prob_true > 0.5 else "No Melanoma"
 
-            # Return the prediction as JSON response
+            # Return the image classification prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})
-    else:
-        form = ImageUploadForm()
-    return render(request, 'upload_image.html', {'form': form})
+
+    # Handle chatbot functionality
+    elif request.method == 'POST' and ('user_input' in request.POST or 'selected_symptoms' in request.POST):
+        # Handle user input for chatbot
+        user_input = request.POST.get('user_input')
+        if user_input:
+            predicted_class = predict_class(user_input)
+            if predicted_class == "medical_consultation":
+                request.session['medical_consultation'] = True
+            else:
+                response = get_response(predicted_class)
+                return JsonResponse({'message': response})
+
+        # Handle symptom submission for chatbot
+        selected_symptoms = request.POST.getlist('selected_symptoms')
+        if selected_symptoms:
+            process_symptoms(selected_symptoms)
+            request.session['medical_consultation'] = False
+            return JsonResponse({'success': True})
+
+    # Load initial data for chatbot
+    symptoms, _, _ = load_data()
+    conversation_history = []  # Load conversation history from session or database if needed
+
+    # Render the combined template with necessary context data
+    return render(request, 'dermachat.html', {
+        'form': ImageUploadForm(),  # Pass the image upload form
+        'symptoms': symptoms,       # Pass the symptoms data for chatbot
+        'conversation_history': conversation_history,  # Pass conversation history data
+    })
