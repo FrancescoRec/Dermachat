@@ -2,11 +2,11 @@ project_directory/
 │
 ├── dermachat/
 │   ├── static/
-│   │   ├── css/
-│   │   └── images/
+│   │   ├── css
+│   │   └── images
 │   │   
 │   ├──templates/
-│   │   └──upload_image.html
+│   │   └── html
 │   │
 │   ├── views.py
 │   ├── forms.py
