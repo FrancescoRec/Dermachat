@@ -29,7 +29,9 @@ if not os.path.exists(local_model_dir):
 # Local path to save the model
 local_model_path = os.path.join(local_model_dir, os.path.basename(model_path))
 
-if bucket_name:
+testing = True
+
+if not testing and bucket_name:
     try:
         import botocore
         import boto3

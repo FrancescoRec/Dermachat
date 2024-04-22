@@ -58,6 +58,17 @@ body {
     border-radius: 5px;
     padding: 20px;
     max-width: 1200px;
+    height: 400px;
+}
+
+/* Imposta l'altezza della parte sinistra in base all'altezza della parte destra */
+.image_container {
+    height: 400px; /* Imposta la stessa altezza di .container */
+}
+
+/* Aggiunge spazio tra le sezioni sinistra e destra */
+.image_container {
+    margin-right: 20px;
 }
 
 .chat {
@@ -102,4 +113,37 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 5px;
+    margin-top: 5px;
+}
+
+/* Prediction result container */
+#prediction-result {
+    background-color: #fff; /* White background */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    margin-bottom: 20px; /* Space between prediction result and chat */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+/* Prediction result heading */
+#prediction-result h2 {
+    margin-top: 0; /* Remove default margin from heading */
+}
+
+/* Prediction result content */
+#prediction-result p {
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
+/* Prediction result buttons */
+#prediction-result .btn {
+    padding: 8px 15px; /* Padding for buttons */
+    border: none; /* No border */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-right: 10px; /* Space between buttons */
 }
