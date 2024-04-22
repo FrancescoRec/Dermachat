@@ -36,24 +36,28 @@ try:
         # Get last modified date of local model file
         local_last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(local_model_path))
 
-        # Get last modified date of model file on S3
-        response = s3.head_object(Bucket=bucket_name, Key=model_path)
-        s3_last_modified = response['LastModified'].replace(tzinfo=None)
+        try:
+            # Get last modified date of model file on S3
+            response = s3.head_object(Bucket=bucket_name, Key=model_path)
+            s3_last_modified = response['LastModified'].replace(tzinfo=None)
 
-        # Compare last modified dates
-        if s3_last_modified > local_last_modified:
-            # Download the newer version from S3
-            s3.download_file(bucket_name, model_path, local_model_path)
+            # Compare last modified dates
+            if s3_last_modified > local_last_modified:
+                # Download the newer version from S3
+                s3.download_file(bucket_name, model_path, local_model_path)
+        except botocore.exceptions.ClientError as e:
+            if e.response['Error']['Code'] == 'NoSuchKey':
+                print("S3 not found")
+            else:
+                print("An error occurred with botocore:", e)
+                # Fallback to using the model in the models folder locally
+                raise e
     else:
         # If the local file doesn't exist, download it from S3
         s3.download_file(bucket_name, model_path, local_model_path)
 
-except botocore.exceptions.ClientError as e:
-    if e.response['Error']['Code'] == 'NoSuchKey':
-        print("S3 not found")
-    else:
-        print("An error occurred with botocore:", e)
-    # Use the model in the models folder locally
+except botocore.exceptions.NoCredentialsError:
+    print("AWS credentials not found. Falling back to local resources.")
 
     # Initialize Xception model
     model = timm.create_model('legacy_xception', pretrained=False)
