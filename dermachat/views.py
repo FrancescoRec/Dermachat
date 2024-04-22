@@ -18,7 +18,7 @@ credentials = Credentials()
 model_path = credentials.AWS_STORAGE_PATH
 bucket_name = credentials.AWS_STORAGE_BUCKET_NAME
 
-local_model_dir = 'models'
+local_model_dir = 'models/cnn'
 
 # Create the local directory if it doesn't exist
 if not os.path.exists(local_model_dir):
