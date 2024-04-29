@@ -8,7 +8,8 @@ project_directory/
 │   ├──templates/
 │   │   └── html # front end code
 │   │
-│   ├── views.py   # back end code (for the image analysis and chatbot
+│   ├── views.py   # back end code (for the image upload)
+│   ├── chatbot.py # code of the chatbot
 │   ├── forms.py   # little code to implement the upload of an image
 │   ├── urls.py    # urls of the page 
 │   ├── test.py    # testing
@@ -21,9 +22,8 @@ project_directory/
 │   └── ...
 │
 ├── models/          # our models
-│   ├── cnn
-│   ├── llm-chatbot
-│   └── naive-bayes
+│   ├── cnn          # code of the image models
+│   └── naive-bayes  # code of the text models
 │
 ├── EDA/             # EDA to obtain the merged csv that we have to put in the database
 │   ├── Fitzpatrick
