@@ -63,7 +63,7 @@
             .catch(error => console.error('Error:', error));
         });
 
-        // JavaScript code for handling chat interaction
+        // JavaScript code for handling chat form submission
         document.getElementById("message-form").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
             var userInput = document.getElementById("user-input").value;
@@ -73,7 +73,7 @@
             document.getElementById("user-input").value = "";
 
             // Send user message to server for processing
-            fetch('/chatbot/', {
+            fetch('{% url 'dermachat' %}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,6 +90,7 @@
                 console.error('Error:', error);
             });
         });
+
 
         // Function to add a message to the chat display
         function addMessage(speaker, message) {
