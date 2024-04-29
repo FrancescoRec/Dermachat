@@ -72,5 +72,4 @@ def chatbot(request):
         return JsonResponse({'response': response_text})
     else:
         # Handle GET requests
-        message = 'This is the chatbot endpoint. Send a POST request with your message to get a response.'
-        return JsonResponse({'message': message})
+        return JsonResponse({'message': 'This is the chatbot endpoint. Send a POST request with your message to get a response.'})

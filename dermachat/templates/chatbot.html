@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-history"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-btn">Send</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Function to append message to chat history
+            function appendMessage(message, sender) {
+                $('#chat-history').append('<div><strong>' + sender + ':</strong> ' + message + '</div>');
+            }
+
+            // Function to send message to chatbot endpoint
+            function sendMessage(message) {
+                var csrfToken = $('[name=csrfmiddlewaretoken]').val()
+                $.ajax({
+                    type: 'POST',
+                    url: '/dermachat/chatbot/',
+                    headers: { "X-CSRFToken": csrfToken },
+                    data: {
+                        'message': message
+                        'csrfmiddlewaretoken': csrfToken
+                    },
+                    success: function(response) {
+                        appendMessage(message, 'You');
+                        appendMessage(response.response, 'Chatbot');
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert('Error: ' + errorThrown);
+                    }
+                });
+            }
+
+            // Event listener for send button click
+            $('#send-btn').click(function() {
+                var message = $('#user-input').val();
+                if (message.trim() !== '') {
+                    appendMessage(message, 'You');
+                    sendMessage(message);
+                    $('#user-input').val('');
+                }
+            });
+
+            // Event listener for pressing enter key
+            $('#user-input').keypress(function(event) {
+                if (event.which === 13) {
+                    $('#send-btn').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
