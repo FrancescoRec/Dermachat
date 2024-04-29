@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DermaChat</title>
-    <style>
-        /* Your CSS styles here */
-    </style>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
     <div class="container">
@@ -31,8 +29,6 @@
         </div>
     </div>
 
-    <!-- Include CSS styles -->
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
 
     <script>
         document.getElementById('upload-form').addEventListener('submit', function(event) {
