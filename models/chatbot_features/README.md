@@ -1,0 +1,1 @@
+"python training.py" everytime you change intents.json
