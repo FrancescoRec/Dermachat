@@ -10,7 +10,7 @@ import os
 
 
 model_name = 'Xception'
-local_model_path = os.path.join('models', 'cnn', f'{model_name}_model.pth')
+local_model_path = os.path.join('models', 'image_models', f'{model_name}_model.pth')
 
 # Initialize Xception model
 model = timm.create_model('legacy_xception', pretrained=False)
