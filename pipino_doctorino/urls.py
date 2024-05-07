@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('dermachat/', include('dermachat.urls')) # add this line where is the start of the app and the second the include function
+    path('dermachat/', include('dermachat.urls')), 
+    path('doctor/', include('doctor_interface.urls'))
 ]
 
