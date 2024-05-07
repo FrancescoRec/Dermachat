@@ -9,27 +9,37 @@
 <body>
     <div class="container">
         <h2>Dermachat for the doctors</h2>
-        <div class="small-container" id="content-container">
-            <input type="text" id="query-input" placeholder="Enter User_ID">
-            <button class="button" onclick="executeQuery()">Look at photos</button>
-        <div class="big-container" id="content-container">
-        </div>
-        <button class="button" id="Select_SkinTone" onclick="toggleMenu()">Select the skin tone</button>
-        <div class="menu" id="menu">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-        </div>
-        <button class="button" id="Label" onclick="toggleX()">X</button>
-        <div id="x" style="display: none;"> Diagnosis of melanoma</div>
-        <button class="button" id="Confirmed" onclick="toggleConfirme()">Confirmed</button>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" id="query-input" name="user_id" placeholder="Enter User_ID">
+            <button type="button" class="button" onclick="executeQuery()">Look at photos</button>
+        
+            <div class="big-container" id="content-container"></div>
+
+            <button type="button" class="button" onclick="toggleSkin()">Select the skin tone</button>
+            <div class="menu" id="menu">
+                <input type="checkbox" name="skin_tone" value="1"> Skin Tone 1<br>
+                <input type="checkbox" name="skin_tone" value="2"> Skin Tone 2<br>
+                <input type="checkbox" name="skin_tone" value="3"> Skin Tone 3<br>
+                <input type="checkbox" name="skin_tone" value="4"> Skin Tone 4<br>
+                <input type="checkbox" name="skin_tone" value="5"> Skin Tone 5<br>
+                <input type="checkbox" name="skin_tone" value="6"> Skin Tone 6<br>
+                
+                <!-- Add more checkboxes for other skin tones -->
+            </div>
+
+            <button type="button" class="button" onclick="toggleMelanoma()">Select diagnosis</button>
+            <div class="menu2" id="menu2">
+                <input type="checkbox" name="melanoma" value="true"> Melanoma<br>
+                <input type="checkbox" name="melanoma" value="false"> Not melanoma<br>
+            </div>
+
+            <button type="submit" class="button" id="Confirmed">Confirmed</button>
+        </form>
     </div>
 
     <script>
-        function toggleMenu() {
+        function toggleSkin() {
             var menu = document.getElementById("menu");
             if (menu.style.display === "none") {
                 menu.style.display = "block";
@@ -38,23 +48,14 @@
             }
         }
 
-        function toggleX() {
-            var x = document.getElementById("x");
-            if (x.style.display === "none") {
-                x.style.display = "block";
+        function toggleMelanoma() {
+            var menu = document.getElementById("menu2");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
             } else {
-                x.style.display = "none";
+                menu.style.display = "none";
             }
         }
-
-        // function toggleConfirme() {
-        //     var Confirmed = document.getElementById("Confirmed");
-        //     if (Confirmed.style.display === "none") {
-        //         Confirmed.style.display = "block";
-        //     } else {
-        //         Confirmed.style.display = "none";
-        //     }
-        // }
 
         function executeQuery() {
             var query = document.getElementById("query-input").value;

@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.doctor_function, name='doctor_interface'), 
+    path("", views.doctor_interface, name='doctor_interface'), 
 
 ]
