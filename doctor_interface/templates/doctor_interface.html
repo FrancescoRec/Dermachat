@@ -1,44 +1,66 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface</title>
-    <style>
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-        }
-        .big-container {
-            margin-top: 20px;
-            padding: 20px;
-            border: 2px solid #007bff;
-            border-radius: 10px;
-            background-color: #f0f0f0;
-            min-height: 200px;
-        }
-    </style>
+    <title>Doctor interface</title>
+    <link rel="stylesheet" href="{% static 'stylesD.css' %}">
 </head>
 <body>
     <div class="container">
-        <h2>Interface</h2>
-        <button class="button" id="button1">Button 1</button>
-        <button class="button" id="button2">Button 2</button>
+        <h2>Dermachat for the doctors</h2>
+        <div class="small-container" id="content-container">
+            <input type="text" id="query-input" placeholder="Enter User_ID">
+            <button class="button" onclick="executeQuery()">Look at photos</button>
         <div class="big-container" id="content-container">
-            <!-- This is where the content will appear -->
         </div>
+        <button class="button" id="Select_SkinTone" onclick="toggleMenu()">Select the skin tone</button>
+        <div class="menu" id="menu">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+        </div>
+        <button class="button" id="Label" onclick="toggleX()">X</button>
+        <div id="x" style="display: none;"> Diagnosis of melanoma</div>
+        <button class="button" id="Confirmed" onclick="toggleConfirme()">Confirmed</button>
     </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "none";
+            }
+        }
+
+        function toggleX() {
+            var x = document.getElementById("x");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        // function toggleConfirme() {
+        //     var Confirmed = document.getElementById("Confirmed");
+        //     if (Confirmed.style.display === "none") {
+        //         Confirmed.style.display = "block";
+        //     } else {
+        //         Confirmed.style.display = "none";
+        //     }
+        // }
+
+        function executeQuery() {
+            var query = document.getElementById("query-input").value;
+            // You can perform further actions here, such as sending the query to the server
+            alert("Executing query: " + query);
+        }
+    </script>
 </body>
 </html>
