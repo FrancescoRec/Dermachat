@@ -1,3 +1,5 @@
+# views.py
+
 from django.shortcuts import render
 from django.http import JsonResponse
 from .forms import ImageUploadForm
@@ -7,7 +9,7 @@ import torch
 import torchvision.transforms as transforms
 import timm
 import os
-
+from .data_preparation import upload_user_image  # Import the function to upload the image
 
 model_name = 'Xception'
 local_model_path = os.path.join('models', 'image_models', f'{model_name}_model.pth')
@@ -50,6 +52,9 @@ def upload_image(request):
                 probabilities = torch.sigmoid(output)[0]
                 prob_true = probabilities[1].item()
                 predicted_class = "Melanoma" if prob_true > 0.5 else "No Melanoma"
+
+            # Call the function to upload image to the database
+            upload_user_image(image_file)  
 
             # Return the prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})

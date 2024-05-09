@@ -18,6 +18,8 @@ pandas = "*"
 tensorflow = "*"
 torchaudio = "*"
 keras = "*"
+psycopg2 = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

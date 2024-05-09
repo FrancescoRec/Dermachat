@@ -11,11 +11,12 @@
         <h2>Dermachat for the doctors</h2>
         <form method="post">
             {% csrf_token %}
+
             <input type="text" id="query-input" name="user_id" placeholder="Enter User_ID">
             <button type="button" class="button" onclick="executeQuery()">Look at photos</button>
-        
-            <div class="big-container" id="content-container"></div>
 
+            <div class="big-container" id="content-container"></div>
+            
             <button type="button" class="button" onclick="toggleSkin()">Select the skin tone</button>
             <div class="menu" id="menu">
                 <input type="checkbox" name="skin_tone" value="1"> Skin Tone 1<br>
@@ -24,8 +25,6 @@
                 <input type="checkbox" name="skin_tone" value="4"> Skin Tone 4<br>
                 <input type="checkbox" name="skin_tone" value="5"> Skin Tone 5<br>
                 <input type="checkbox" name="skin_tone" value="6"> Skin Tone 6<br>
-                
-                <!-- Add more checkboxes for other skin tones -->
             </div>
 
             <button type="button" class="button" onclick="toggleMelanoma()">Select diagnosis</button>
