@@ -11,11 +11,20 @@
         <h2>Dermachat for the doctors</h2>
         <form method="post">
             {% csrf_token %}
-
+    
             <input type="text" id="query-input" name="user_id" placeholder="Enter User_ID">
-            <button type="button" class="button" onclick="executeQuery()">Look at photos</button>
+            <button type="submit" class="button">Look at photos</button>
 
-            <div class="big-container" id="content-container"></div>
+            <div class="big-container" id="content-container">
+                {% if image_filenames %}
+                    <h3>Images for User ID: {{ user_id }}</h3>
+                    <div class="image-gallery">
+                        {% for image_filename in image_filenames %}
+                            <img src="https://s3.amazonaws.com/provafinalproject/raw_data/nonlabelled_images/date=27-03-2024/{{ image_filename }}" alt="User Image">
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
             
             <button type="button" class="button" onclick="toggleSkin()">Select the skin tone</button>
             <div class="menu" id="menu">

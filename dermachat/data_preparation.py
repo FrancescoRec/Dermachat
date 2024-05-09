@@ -24,8 +24,9 @@ def upload_user_image(image_data):
 
     # Generating a unique filename (We can use any method we prefer while keeping in mind GDPR)
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    current_datetime_for_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     user_tag = f'user_{uuid.uuid4()}'
-    filename = f"{current_datetime}_{user_tag}.jpg"  
+    filename = f"{current_datetime_for_filename}_{user_tag}.jpg"  
     key = folder_name + filename
 
     # Upload the image data to S3:
