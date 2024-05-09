@@ -63,19 +63,11 @@ def upload_image(request):
             image_file_like = BytesIO(image_data)
 
             # Call the function to upload image to the database
-            upload_result = upload_user_image(image_file_like) 
-
-            user_id = 4 
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            filename = f"{timestamp}_{user_id}.jpg" 
-
-            # Get other metadata
-            filename = image_file.name
-            key = f"raw_data/nonlabelled_images/date=27-03-2024/{filename}"  # Assuming S3_FOLDER is defined in your settings
+            upload_result, user_tag, filename, key, current_datetime = upload_user_image(image_file_like) 
             
 
             # Call the function to store image metadata
-            store_image = store_newimage_metadata(user_id, filename, key, timestamp)
+            store_image = store_newimage_metadata(user_tag, filename, key, current_datetime)
 
             # Return the prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})

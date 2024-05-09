@@ -23,17 +23,15 @@ def upload_user_image(image_data):
     s3_bucket = 'provafinalproject'
 
     # Generating a unique filename (We can use any method we prefer while keeping in mind GDPR)
-    current_datetime = datetime.now()
+    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     user_tag = f'user_{uuid.uuid4()}'
     filename = f"{current_datetime}_{user_tag}.jpg"  
-
-    # Combine folder and filename to create the key
     key = folder_name + filename
 
     # Upload the image data to S3:
     try:
         s3.upload_fileobj(image_data, s3_bucket, key)
-        return f"Successfully uploaded image to S3: {key}"
+        return f"Successfully uploaded image to S3: {key}", user_tag, filename, key, current_datetime
     except Exception as e:
         return f"Error uploading image to S3: {e}"
     
@@ -56,7 +54,7 @@ def store_newimage_metadata(user_id, filename, key, timestamp):
         # Create a new table named 'new_image_metadata' if it doesn't exist:
         create_table_query = '''
         CREATE TABLE IF NOT EXISTS new_image_metadata (
-            user_id SERIAL PRIMARY KEY,
+            user_id VARCHAR (255) PRIMARY KEY,
             filename VARCHAR(255),
             skin_tone VARCHAR(10) DEFAULT 'TBD',
             malignant VARCHAR(10) DEFAULT 'TBD',
