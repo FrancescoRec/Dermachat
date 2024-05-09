@@ -7,6 +7,7 @@ from datetime import datetime
 import psycopg2
 import os
 from dotenv import load_dotenv
+import uuid
 
 # Load environment variables from .env file
 load_dotenv()
@@ -23,7 +24,7 @@ def upload_user_image(image_data):
 
     # Generating a unique filename (We can use any method we prefer while keeping in mind GDPR)
     current_datetime = datetime.now().strftime("%Y%m%d%H%M%S")
-    user_tag = 'user' 
+    user_tag = f'user_{uuid.uuid4()}'
     filename = f"{current_datetime}_{user_tag}.jpg"  
 
     # Combine folder and filename to create the key
