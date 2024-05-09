@@ -1,3 +1,4 @@
 hypotesis/
 .hypothesis/
 __pycache__/
+.env

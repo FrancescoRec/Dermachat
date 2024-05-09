@@ -23,7 +23,7 @@ def upload_user_image(image_data):
     s3_bucket = 'provafinalproject'
 
     # Generating a unique filename (We can use any method we prefer while keeping in mind GDPR)
-    current_datetime = datetime.now().strftime("%Y%m%d%H%M%S")
+    current_datetime = datetime.now()
     user_tag = f'user_{uuid.uuid4()}'
     filename = f"{current_datetime}_{user_tag}.jpg"  
 
@@ -37,7 +37,7 @@ def upload_user_image(image_data):
     except Exception as e:
         return f"Error uploading image to S3: {e}"
     
-def store_newimage_metadata(image_data, user_id, filename, skin_tone, key):
+def store_newimage_metadata(user_id, filename, key, timestamp):
     ''' This function stores metadata from the new image to indicate that
     it has not been officially labeled by a specialist after diagnosis'''
     try:
@@ -58,7 +58,7 @@ def store_newimage_metadata(image_data, user_id, filename, skin_tone, key):
         CREATE TABLE IF NOT EXISTS new_image_metadata (
             user_id SERIAL PRIMARY KEY,
             filename VARCHAR(255),
-            skin_tone INTEGER,
+            skin_tone VARCHAR(10) DEFAULT 'TBD',
             malignant VARCHAR(10) DEFAULT 'TBD',
             path VARCHAR(255),
             time_taken TIMESTAMP
@@ -67,15 +67,13 @@ def store_newimage_metadata(image_data, user_id, filename, skin_tone, key):
         cursor.execute(create_table_query)
         connection.commit()
 
-        # Get current timestamp
-        timestamp = datetime.datetime.now()
 
         # Insert image metadata into the table:
         insert_query = '''
-        INSERT INTO new_image_metadata (filename, skin_tone, malignant, path, time_taken)
-        VALUES (%s, %s, %s, %s, %s)
+        INSERT INTO new_image_metadata (user_id, filename, skin_tone, malignant, path, time_taken)
+        VALUES (%s, %s, %s, %s, %s, %s)
         '''
-        cursor.execute(insert_query, (filename, 'TBD', 'TBD', key, timestamp)) # skin_tone value gets verified by specialist as well
+        cursor.execute(insert_query, (user_id, filename, 'TBD', 'TBD', key, timestamp)) # skin_tone value gets verified by specialist as well
         connection.commit()
 
         print("Image metadata inserted successfully.")

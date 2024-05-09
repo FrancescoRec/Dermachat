@@ -9,9 +9,12 @@ import torch
 import torchvision.transforms as transforms
 import timm
 import os
+import uuid
+from datetime import datetime
 
 from io import BytesIO
-from .data_preparation import upload_user_image  # Import the function to upload the image
+from .data_preparation import upload_user_image 
+from .data_preparation import store_newimage_metadata
 
 model_name = 'Xception'
 local_model_path = os.path.join('models', 'image_models', f'{model_name}_model.pth')
@@ -61,6 +64,18 @@ def upload_image(request):
 
             # Call the function to upload image to the database
             upload_result = upload_user_image(image_file_like) 
+
+            user_id = 4 
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            filename = f"{timestamp}_{user_id}.jpg" 
+
+            # Get other metadata
+            filename = image_file.name
+            key = f"raw_data/nonlabelled_images/date=27-03-2024/{filename}"  # Assuming S3_FOLDER is defined in your settings
+            
+
+            # Call the function to store image metadata
+            store_image = store_newimage_metadata(user_id, filename, key, timestamp)
 
             # Return the prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})
