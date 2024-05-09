@@ -9,6 +9,8 @@ import torch
 import torchvision.transforms as transforms
 import timm
 import os
+
+from io import BytesIO
 from .data_preparation import upload_user_image  # Import the function to upload the image
 
 model_name = 'Xception'
@@ -53,8 +55,12 @@ def upload_image(request):
                 prob_true = probabilities[1].item()
                 predicted_class = "Melanoma" if prob_true > 0.5 else "No Melanoma"
 
+
+            # Convert image data to file-like object
+            image_file_like = BytesIO(image_data)
+
             # Call the function to upload image to the database
-            upload_user_image(image_file)  
+            upload_result = upload_user_image(image_file_like) 
 
             # Return the prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})
