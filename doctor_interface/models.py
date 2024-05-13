@@ -7,3 +7,4 @@ class DoctorSelection(models.Model):
     user_id = models.CharField(max_length=100)
     skin_tone = models.CharField(max_length=100)
     melanoma = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='images/')
