@@ -62,12 +62,15 @@ def upload_image(request):
             # Convert image data to file-like object
             image_file_like = BytesIO(image_data)
 
-            # Call the function to upload image to the database
-            upload_result, user_tag, filename, key, current_datetime = upload_user_image(image_file_like) 
-            
+            test= True
 
-            # Call the function to store image metadata
-            store_image = store_newimage_metadata(user_tag, filename, key, current_datetime)
+            if not test:
+                
+                # Call the function to upload image to the database
+                upload_result, user_tag, filename, key, current_datetime = upload_user_image(image_file_like) 
+                
+                # Call the function to store image metadata
+                store_image = store_newimage_metadata(user_tag, filename, key, current_datetime)
 
             # Return the prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})
