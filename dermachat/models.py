@@ -1,8 +1,9 @@
 from django.db import models
+import uuid
 
 class ImageMetadata(models.Model):
     """Model to store metadata of images uploaded by users"""
-    user_id = models.UUIDField(primary_key=True)
+    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     skin_tone = models.CharField(max_length=10, default='', blank=True)
     malignant = models.BooleanField(max_length=10, null=True)
     image = models.ImageField(upload_to='raw_data/nonlabelled_images/')
@@ -10,7 +11,7 @@ class ImageMetadata(models.Model):
 
     # Define the string representation of the model
     def __str__(self):
-        return self.user_id
+        return str(self.user_id)
     
     # Define the filename property
     @property

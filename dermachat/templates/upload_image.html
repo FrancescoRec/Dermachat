@@ -23,33 +23,15 @@
                     <button type="submit">Submit</button>
                 </form>
                 <div id="prediction-result">
-                    <!-- Prediction result will be displayed here -->
+                    {% if prediction_class %}
+                        <h3>{{ prediction_class }}</h3>
+                        <p>Prediction Value: {{ prediction_value }}</p>
+                    {% endif %}
                 </div>
+                
             </div>
         </div>
     </div>
-
-
-    <script>
-        document.getElementById('upload-form').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            var formData = new FormData(this); 
-            fetch('{% url 'upload_image' %}', { 
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Update prediction result in the DOM using JSON data
-                var resultDiv = document.getElementById('prediction-result');
-                resultDiv.innerHTML = "<h2>" + data.predicted_class + "</h2><p>The probability of the input skin image being classified as malignant is: " + data.prob_true + "</p>";
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    </script>
-
-    <!-- upload_image.html -->
-    <a href="{% url 'chatbot' %}">Go to Chatbot</a>
-    
+ 
 </body>
 </html>
