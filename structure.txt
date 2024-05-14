@@ -8,16 +8,16 @@ project_directory/
 │   ├──templates/
 │   │   └── html # front end code
 │   │
-│   ├── views.py   # back end code (for the image upload)
+│   ├── views.py   # back end code (for the image upload, prediction and adding in the database)
 │   ├── chatbot.py # code of the chatbot
 │   ├── forms.py   # little code to implement the upload of an image
 │   ├── urls.py    # urls of the page 
 │   ├── test.py    # testing
-│   ├── helper.py  # file with all the function of jorge chatbot
+│   ├── helper.py  # file with all the function of the views.py
 │   └── ...
 │
 ├── pipino_doctorino/
-│   ├── settings.py # settings (AWS credentails ecc...)
+│   ├── settings.py # settings (database, AWS credentails ecc...)
 │   ├── urls.py     # initial urls of each app (in this case only dermachat)
 │   └── ...
 │
