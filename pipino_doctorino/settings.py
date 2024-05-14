@@ -124,7 +124,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# adding database configuration from .env file
+
 import environ
 
 env = environ.Env()
@@ -133,7 +133,7 @@ environ.Env.read_env()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "dermachat",
+        'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
@@ -141,18 +141,20 @@ DATABASES = {
     }
 }
 
-# # adding for s3 bucket configuration
-# STORAGES = {
-#     "default": {
-#         "BACKEND": "storages.backends.s3.S3Storage",
-#         "OPTIONS": {
-#             "access_key": env("AWS_ACCESS_KEY_ID"),
-#             "secret_key": env("AWS_SECRET_ACCESS_KEY"),
-#             "aws_session_token": env("AWS_SESSION_TOKEN"),
-#             "bucket_name": env("AWS_STORAGE_BUCKET_NAME"),
-#         },
-#     },
-# }
+# adding for s3 bucket configuration
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "access_key": env("AWS_ACCESS_KEY_ID"),
+            "secret_key": env("AWS_SECRET_ACCESS_KEY"),
+            "aws_session_token": env("AWS_SESSION_TOKEN"),
+            "bucket_name": env("AWS_STORAGE_BUCKET_NAME"),
+            "location": env("AWS_FOLDER_OF_BUCKET"),
+
+        },
+    },
+}
 
 # media
 
