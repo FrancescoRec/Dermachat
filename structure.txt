@@ -1,5 +1,11 @@
 project_directory/
 │
+│
+├── pipino_doctorino/
+│   ├── settings.py # settings (database, AWS credentails ecc...)
+│   ├── urls.py     # initial urls of each app (in this case only dermachat)
+│   └── ...
+│
 ├── dermachat/ # FOLDER OF THE APP
 │   ├── static/
 │   │   ├── css    # this has the decoration of fron end
@@ -16,10 +22,8 @@ project_directory/
 │   ├── helper.py  # file with all the function of the views.py
 │   └── ...
 │
-├── pipino_doctorino/
-│   ├── settings.py # settings (database, AWS credentails ecc...)
-│   ├── urls.py     # initial urls of each app (in this case only dermachat)
-│   └── ...
+├── media/
+│   └── images.jpg    # images uploaded by the user
 │
 ├── models/          # our models
 │   ├── cnn          # code of the image models
