@@ -13,8 +13,7 @@ import uuid
 from datetime import datetime
 
 from io import BytesIO
-from .data_preparation import upload_user_image 
-from .data_preparation import store_newimage_metadata
+from .models import ImageMetadata
 
 model_name = 'Xception'
 local_model_path = os.path.join('models', 'image_models', f'{model_name}_model.pth')
@@ -43,6 +42,7 @@ def preprocess_image(image):
     return image.unsqueeze(0)  
 
 def upload_image(request):
+    # mke the function all the form
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -59,18 +59,27 @@ def upload_image(request):
                 predicted_class = "Melanoma" if prob_true > 0.5 else "No Melanoma"
 
 
-            # Convert image data to file-like object
             image_file_like = BytesIO(image_data)
+            image_data = ImageMetadata(image=image_file_like)
+            image_data.save()
 
-            test= True
+            # Save in the s3 bucket
 
-            if not test:
-                
-                # Call the function to upload image to the database
-                upload_result, user_tag, filename, key, current_datetime = upload_user_image(image_file_like) 
-                
-                # Call the function to store image metadata
-                store_image = store_newimage_metadata(user_tag, filename, key, current_datetime)
+            # Initialize the S3 client:
+
+            s3 = boto3.client('s3')
+
+            # Declare bucket file variables:
+            folder_name = 'raw_data/nonlabelled_images/'
+
+               
+
+
+
+                    
+                    
+                  
+        
 
             # Return the prediction as JSON response
             return JsonResponse({'predicted_class': predicted_class, 'prob_true': prob_true})

@@ -1,6 +1,12 @@
 # PostgreSQL Database Configuration
 DB_NAME=postgres
 DB_USER=postgres
-DB_PASSWORD=password
+DB_PASSWORD=postgres
 DB_HOST=localhost
 DB_PORT=5432
+
+# AWS S3 Configuration
+AWS_ACCESS_KEY_ID=key
+AWS_SECRET_ACCESS_KEY=secret
+AWS_SESSION_TOKEN=token
+AWS_BUCKET_NAME=bucket

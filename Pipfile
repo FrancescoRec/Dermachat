@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 boto3 = "*"
-django-storages = "*"
 pillow = "*"
 opencv-python-headless = "*"
 numpy = "*"
@@ -20,6 +19,8 @@ torchaudio = "*"
 keras = "*"
 psycopg2 = "*"
 python-dotenv = "*"
+django-storages = {extras = ["s3"], version = "*"}
+django-environ = "*"
 
 [dev-packages]
 
