@@ -1,10 +1,14 @@
 from django.db import models
+from dermachat.models import ImageMetadata
 
-# Create your models here.
-from django.db import models
+class DoctorClassification(models.Model):
+    """Model to store doctor's classification for images"""
+    user_id = models.UUIDField(default=None, null=True, blank=True)
+    # image come from the column image in the table ImageMetadata
+    image = models.ForeignKey(ImageMetadata, on_delete=models.CASCADE)
+    skin_tone = models.IntegerField(choices=[(i, str(i)) for i in range(1, 7)])
+    malignant = models.BooleanField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
-class DoctorSelection(models.Model):
-    user_id = models.CharField(max_length=100)
-    skin_tone = models.CharField(max_length=100)
-    melanoma = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='images/')
+    class Meta:
+        db_table = "doctor_classification"
