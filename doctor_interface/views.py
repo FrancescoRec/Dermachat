@@ -11,9 +11,8 @@ def doctor_classification_view(request):
 
         # Retrieve the image_id from ImageMetadata
         image_metadata = ImageMetadata.objects.filter(user_id=user_id).first()
-        print(image_metadata)
         if image_metadata:
-            filename = image_metadata.image.name.split('/')[-1]
+            filename = f"prepared/classified_images/images_of_users{image_metadata.image.name.split('/')[-1]}"
 
             # Create DoctorClassification instance with retrieved image_id
             DoctorClassification.objects.create(
