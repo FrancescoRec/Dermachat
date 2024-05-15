@@ -6,12 +6,12 @@ def doctor_classification_view(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         skin_tone = request.POST.get('skin_tone')
-        malignant = request.POST.get('malignant') == 'True'
+        malignant = request.POST.get('malignant') == 'true'
 
         # Retrieve the image_id from ImageMetadata
         image_metadata = ImageMetadata.objects.filter(user_id=user_id).first()
         if image_metadata:
-            filename = f"prepared/classified_images/images_of_users{image_metadata.image.name.split('/')[-1]}"
+            filename = f"{image_metadata.image.name.split('/')[-1]}"
 
             # Create DoctorClassification instance with retrieved image_id
             DoctorClassification.objects.create(
