@@ -18,7 +18,7 @@
                 <h3>Images for User ID: <span id="user-id-display"></span></h3>
                 <div class="image-gallery">
                     {% if user_image %}
-                    <img src="{% url 'image_url' user_id=user_id %}" alt="User Image">
+                    <img src="{{ user_image }}" alt="User Image">
                     {% endif %}
                 </div>
             </div>
