@@ -7,7 +7,6 @@ def doctor_classification_view(request):
         user_id = request.POST.get('user_id')
         skin_tone = request.POST.get('skin_tone')
         malignant = request.POST.get('malignant') == 'True'
-        image = request.POST.get('image')
 
         # Retrieve the image_id from ImageMetadata
         image_metadata = ImageMetadata.objects.filter(user_id=user_id).first()
