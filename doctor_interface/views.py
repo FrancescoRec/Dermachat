@@ -10,7 +10,8 @@ def doctor_classification_view(request):
         image = request.POST.get('image')
 
         # Retrieve the image_id from ImageMetadata
-        image_metadata = ImageMetadata.objects.filter(image=image).first()
+        image_metadata = ImageMetadata.objects.filter(user_id=user_id).first()
+        print(image_metadata)
         if image_metadata:
             filename = image_metadata.image.name.split('/')[-1]
 
@@ -19,10 +20,10 @@ def doctor_classification_view(request):
                 user_id=user_id,
                 skin_tone=skin_tone,
                 malignant=malignant,
-                image_id=filename  
+                image=filename  
             )
 
         # Redirect back to the doctor page
-        return redirect('doctor_interface')  # Redirect to doctor page
+        return redirect('doctor_interface')  
 
     return render(request, 'doctor_interface.html')
