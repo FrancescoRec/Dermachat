@@ -147,7 +147,7 @@ DATABASES = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-USE_S3=True
+USE_S3=False
 
 # Configure Django storage for Amazon S3
 # Assume USE_S3 is defined somewhere in your settings

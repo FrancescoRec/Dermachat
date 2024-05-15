@@ -11,15 +11,14 @@
         <h2>Dermachat for the doctors</h2>
         <form method="post">
             {% csrf_token %}
-    
             <input type="text" id="query-input" name="user_id" placeholder="Enter User_ID">
-            <button type="submit" class="button">Look at photos</button>
-
+            <button type="button" class="button" onclick="displayPhotos()">Look at photos</button>
+            
             <div class="big-container" id="content-container">
-                <h3>Images for User ID: {{ user_id }}</h3>
+                <h3>Images for User ID: <span id="user-id-display"></span></h3>
                 <div class="image-gallery">
                     {% if user_image %}
-                    <img src="{{ user_image }}" alt="User Image">
+                    <img src="{% url 'image_url' user_id=user_id %}" alt="User Image">
                     {% endif %}
                 </div>
             </div>
@@ -39,6 +38,10 @@
     </div>
 
     <script>
+        function displayPhotos() {
+            var userId = document.getElementById("query-input").value;
+            document.getElementById("user-id-display").textContent = userId;
+        }
         function toggleSkin() {
             var menu = document.getElementById("menu");
             if (menu.style.display === "none") {
