@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
-import environ
-env = environ.Env()
-environ.Env.read_env()
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -140,24 +137,27 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
-USE3 = env('USE3')
+USE3 = True
 if USE3:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
-    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-    print(AWS_ACCESS_KEY_ID)
-    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-    AWS_SESSION_TOKEN = env('AWS_SESSION_TOKEN')
-    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-else:
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    try:
+        DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+        AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+        AWS_SESSION_TOKEN = os.getenv('AWS_SESSION_TOKEN')
+        AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    except:
+        DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
