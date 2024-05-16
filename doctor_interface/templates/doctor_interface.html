@@ -9,20 +9,23 @@
 <body>
     <div class="container">
         <h2>Dermachat for the doctors</h2>
-        <form method="post">
+        <form method="post" action="/doctor/images/">
             {% csrf_token %}
             <input type="text" id="query-input" name="user_id" placeholder="Enter User_ID">
-            <button type="button" class="button" onclick="displayPhotos()">Look at photos</button>
+            <button type="submit">Look at photos</button>
             
             <div class="big-container" id="content-container">
-                <h3>Images for User ID: <span id="user-id-display"></span></h3>
                 <div class="image-gallery">
-                    {% if user_image %}
-                    <img src="{{ user_image }}" alt="User Image">
+                    {% if image %}
+                    <img src="{{ image.image.url }}" alt="User Image">
                     {% endif %}
                 </div>
             </div>
-            
+        </form>
+
+        <form method="post" action="/doctor/">
+            {% csrf_token %}
+            <input type="hidden" name="user_id_" value="{{ user_id }}">
             <label for="skin_tone">Skin Tone:</label>
             <select name="skin_tone">
                 {% for i in "123456" %}
@@ -34,31 +37,8 @@
             <input type="checkbox" name="malignant" value="true"><br>
             
             <button type="submit" class="button">Confirm</button>
+            
         </form>
     </div>
-
-    <script>
-        function displayPhotos() {
-            var userId = document.getElementById("query-input").value;
-            document.getElementById("user-id-display").textContent = userId;
-        }
-        function toggleSkin() {
-            var menu = document.getElementById("menu");
-            if (menu.style.display === "none") {
-                menu.style.display = "block";
-            } else {
-                menu.style.display = "none";
-            }
-        }
-
-        function toggleMelanoma() {
-            var menu = document.getElementById("menu2");
-            if (menu.style.display === "none") {
-                menu.style.display = "block";
-            } else {
-                menu.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 from django.db import models
 from dermachat.models import ImageMetadata
 
+
 class DoctorClassification(models.Model):
     """Model to store doctor's classification for images"""
     user_id = models.UUIDField(primary_key=True,default=None, editable=False)
