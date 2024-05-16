@@ -3,3 +3,4 @@ hypotesis/
 __pycache__/
 .env
 media/
+things_to_do.txt
