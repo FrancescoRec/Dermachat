@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from dermachat.models import ImageMetadata
 from .models import DoctorClassification
 from django.core.files.base import ContentFile
+import os 
 
 
 
@@ -30,7 +31,8 @@ def doctor_classification_view(request):
             user_id=user_id,
             skin_tone=skin_tone,
             malignant=malignant,
-            image=ContentFile(image_metadata.image.read(), name=image_metadata.image.name)
+            image=ContentFile(image_metadata.image.read(), name=os.path.basename(image_metadata.image.name))
+
         )
         
         # Redirect back to the doctor page
