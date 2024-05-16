@@ -12,10 +12,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import environ
 
+import environ
 env = environ.Env()
 environ.Env.read_env()
+
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,23 +148,16 @@ DATABASES = {
     }
 }
 
-from dotenv import load_dotenv
-load_dotenv()
-
-
-USE3 = True
+USE3 = env('USE3')
 if USE3:
-    try:
-        DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
-        AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-        AWS_SESSION_TOKEN = os.getenv('AWS_SESSION_TOKEN')
-        AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-    except:
-        DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-        
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    print(AWS_ACCESS_KEY_ID)
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    AWS_SESSION_TOKEN = env('AWS_SESSION_TOKEN')
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+else:
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-
