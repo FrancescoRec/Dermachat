@@ -12,7 +12,7 @@
         <form method="post" action="/doctor/images/">
             {% csrf_token %}
             <input type="text" id="query-input" name="user_id" placeholder="Enter User_ID">
-            <button type="submit">Look at photos</button>
+            <button type="submit", class="button">Look at photos</button>
             
             <div class="big-container" id="content-container">
                 <div class="image-gallery">
