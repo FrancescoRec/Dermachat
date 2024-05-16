@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,10 +131,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 
-import environ
 
-env = environ.Env()
-environ.Env.read_env()
 
 DATABASES = {
     'default': {
@@ -143,32 +144,21 @@ DATABASES = {
     }
 }
 
-# Update MEDIA_URL and MEDIA_ROOT for local storage
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+from dotenv import load_dotenv
+load_dotenv()
 
-USE_S3=False
 
-# Configure Django storage for Amazon S3
-# Assume USE_S3 is defined somewhere in your settings
-if USE_S3: 
-    # Configure Django storage for Amazon S3
+USE3 = True
+if USE3:
     try:
-        DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-        AWS_ACCESS_KEY_ID = 'ASIAXB7FCAWSGL46PBXX'
-        AWS_SECRET_ACCESS_KEY = 'RAEFIlb+A1aLojvBnQt4xUNUWNE2RkEilIx8vvoV'
-        AWS_SESSION_TOKEN = 'IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCbTAAziinwhbUB/zo62NuWwOyWKCek9NnpEXBg1eknIgIhAIvrpxYWC116Hzhk8MKDzpJPXV4lij85ORhJYjLV0kd0KrICCKn//////////wEQABoMNDg1Mjc0ODEzODYwIgyvi3Ftjwt+iINO+wkqhgKP5YOFiRSDx5XX6YG1J1Rr36YPrOG5YZaOKNwW/lVq0cdkiVI4M9QgzIa4Vh3maSCnSZGw1yBizFQeAaug9p9WPZuavnzIpY6R9/jAUd2tVjpC3Mk7mOt4wbfMX02p++2zBaLIs+TbqRo1YSCx+b+3eMqc+PEFNR4Uo3TJZhREzV+sr1fMkISCuw0U5gmd9nr9sopDYRTSdex0pNMAmjbES8eijM14bPtI4Janj685x//pkhGRcRROfEgFguZ5ONhZmMWepLMS0oOSu87WGY4xsTMQx7x3QDN+qVUc0lRel+uGcIQnKObe4JBUQo61fG3SbCYTz+gaGD4/8X1w78SRRhrN2UTOMJapk7IGOpwBg8d16tsAEhOOgtiH2EmbQ1spi+SXi2FBN7nkwezGqDBHyYYFDNwNk2stO+jrUQbNxW1rVTOwaADpvM9v3sQZgdoY94jgk515EVlLlqTmvUUVZp0l8fqCtBPp6Lrjyvm12djgAY+yUm5Adb5j569YJ/6sIQeClCXcQFC8C4y9BJUINBRpYm22eZDkUJdVRxNCs8G7jN6BBF80otli'
-        AWS_STORAGE_BUCKET_NAME = 'provafinalproject'
-
-
-    except Exception as e:
-        print(f"Error: {e}")
-        print("Failed to configure S3 storage. Using local storage instead.")
-        USE_S3 = False
-
-if not USE_S3:
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
+        DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+        AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+        AWS_SESSION_TOKEN = os.getenv('AWS_SESSION_TOKEN')
+        AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    except:
+        DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+        
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
