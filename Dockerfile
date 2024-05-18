@@ -1,5 +1,5 @@
 # Use the official Python image as the base
-FROM python:3.9
+FROM python:3.11
 
 # Set environment variables to prevent Python from writing pyc files and buffering stdout/stderr
 ENV PYTHONDONTWRITEBYTECODE=1

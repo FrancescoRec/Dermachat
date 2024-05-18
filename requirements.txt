@@ -12,3 +12,5 @@ pandas
 tensorflow
 torchaudio
 keras
+python-dotenv
+psycopg2-binary
