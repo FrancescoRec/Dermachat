@@ -17,22 +17,29 @@
                 <p>Upload a skin lesion image for classification</p>
             </div>
             <div class="main">
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" >
                     {% csrf_token %}
                     <label for="id_image">Upload your Image:</label>
                     {{ form.image }}
-                    <button type="submit">Predict</button>
+                    <button type="submit" name="action" value="upload">Submit</button>
                 </form>
-                <div id="prediction-result">
-                    {% if prediction_class %}
-                        <h3>{{ prediction_class }}</h3>
-                        <p>Prediction Value: {{ prediction_value }}</p>
-                    {% endif %}
-                </div>
-                
             </div>
         </div>
     </div>
- 
+    <div class="container">
+        <div class="content">
+            <div class="main image">
+                <img src="{{ image.url }}" id="displayed_image">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('id_image').onchange = evt => {
+            const [file] = evt.target.files;
+            if (file) {
+                document.getElementById('displayed_image').src = URL.createObjectURL(file);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ class ImageMetadata(models.Model):
     malignant = models.BooleanField(max_length=10, null=True)
     image = models.ImageField(upload_to='raw_data/unlabelled_images/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    prediction = models.FloatField(default=0.0)
 
     # Define the string representation of the model
     def __str__(self):
