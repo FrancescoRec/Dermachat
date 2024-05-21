@@ -18,6 +18,8 @@
                 <div class="image-gallery">
                     {% if image %}
                     <img src="{{ image.image.url }}" alt="User Image">
+                    <H3>The model has retrieve this percentage of risk:</H3>
+                    <h2> {{ prediction }} </h2>
                     {% endif %}
                 </div>
             </div>

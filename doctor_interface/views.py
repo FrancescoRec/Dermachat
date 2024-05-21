@@ -11,7 +11,10 @@ def get_images(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         image = ImageMetadata.objects.filter(user_id=user_id).first()
-        return render(request, 'doctor_interface.html', {'image': image, 'user_id': user_id})
+        prediction = image.prediction
+        return render(request, 'doctor_interface.html', {'image': image,
+                                                          'user_id': user_id,
+                                                            'prediction': prediction})
 
 
 
@@ -31,7 +34,8 @@ def doctor_classification_view(request):
             user_id=user_id,
             skin_tone=skin_tone,
             malignant=malignant,
-            image=ContentFile(image_metadata.image.read(), name=os.path.basename(image_metadata.image.name))
+            image=ContentFile(image_metadata.image.read(), name=os.path.basename(image_metadata.image.name)),
+            prediction= ImageMetadata.objects.filter(user_id=user_id).first().prediction
 
         )
         

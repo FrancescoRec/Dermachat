@@ -9,6 +9,7 @@ class DoctorClassification(models.Model):
     malignant = models.BooleanField()
     image = models.ImageField(upload_to ='prepared/classified_images/images_of_users', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    prediction = models.FloatField(default=0.0)
 
     class Meta:
         db_table = "doctor_classification"
