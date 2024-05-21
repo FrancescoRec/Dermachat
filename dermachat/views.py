@@ -12,14 +12,14 @@ def upload_image(request):
         if form.is_valid():
             image = form.cleaned_data['image']
             prediction = obtain_prediction(image)
-            # predicted_class = "Melanoma" if prediction > 0.5 else "No Melanoma"
-            ImageMetadata.objects.create(image=image, prediction=prediction)
+            img_obj = ImageMetadata.objects.create(image=image, prediction=prediction)
             return render(
                 request,
                 'upload_image.html',
                 {
                     'form': form,
-                    'image': ImageMetadata.image
+                    'image': img_obj.image
+                    
                 }
                 
             )

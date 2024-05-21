@@ -17,11 +17,10 @@
                 <p>Upload a skin lesion image for classification</p>
             </div>
             <div class="main">
-                <form method="post" enctype="multipart/form-data" >
+                <form method="post" enctype="multipart/form-data" id="a-form">
                     {% csrf_token %}
                     <label for="id_image">Upload your Image:</label>
                     {{ form.image }}
-                    <button type="submit" name="action" value="upload">Submit</button>
                 </form>
             </div>
         </div>
@@ -30,6 +29,19 @@
         <div class="content">
             <div class="main image">
                 <img src="{{ image.url }}" id="displayed_image">
+            </div>
+        </div>
+    </div> 
+    <div class="container">
+        <div class="content">
+            <div class="main image">
+                <form method="post" enctype="multipart/form-data" id="b-form"> 
+                    {% csrf_token %}
+                    <button type="submit" form="a-form">Submit</button> 
+                </form>
+                {% if image %}
+                    <h3>madonnagiraffanellavalledeisoffittibassi</h3>
+                {% endif %}
             </div>
         </div>
     </div>
