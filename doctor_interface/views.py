@@ -10,13 +10,15 @@ def get_images(request):
     # request to get the images from the database (it will connect to s3 for some magical spell)
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
-        image = ImageMetadata.objects.filter(user_id=user_id).first()
-        prediction = image.prediction
-        return render(request, 'doctor_interface.html', {'image': image,
-                                                          'user_id': user_id,
-                                                            'prediction': prediction})
+    else:
+        user_id = request.GET.get('user_id')
 
-
+    image = ImageMetadata.objects.filter(user_id=user_id).first()
+    prediction = image.prediction
+    return render(request, 'doctor_interface.html', {'image': image,
+                                                        'user_id': user_id,
+                                                        'prediction': prediction})
+    
 
 def doctor_classification_view(request):
     if request.method == 'POST':
@@ -44,3 +46,12 @@ def doctor_classification_view(request):
 
     return render(request, 'doctor_interface.html')
 
+def table_view(request):
+    # Perform the query to get ImageMetadata records where user_id is not in DoctorClassification
+    data = ImageMetadata.objects.exclude(user_id__in=DoctorClassification.objects.values('user_id')).order_by('-prediction')
+    
+    context = {
+        'data': data
+    }
+    
+    return render(request, 'table_view.html', context)

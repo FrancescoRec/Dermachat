@@ -1,0 +1,55 @@
+<!-- templates/table_view.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Triage Line</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Triage Line</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Created At</th>
+                <th>Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td><a href="{% url 'images' %}?user_id={{ item.user_id }}">{{ item.user_id }}</a></td>
+                <td>{{ item.created_at }}</td>
+                <td>{{ item.prediction }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
