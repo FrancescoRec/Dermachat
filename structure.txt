@@ -12,7 +12,7 @@ project_directory/
 │   │   
 │   │   
 │   ├──templates/
-│   │   └── html   # front end code
+│   │   └── upload_image.html   # front end code
 │   │
 │   ├── views.py   # back end code (for the image upload, prediction and adding in the database)
 │   ├── chatbot.py # code of the chatbot
@@ -30,7 +30,8 @@ project_directory/
 │   │   
 │   │   
 │   ├──templates/
-│   │   └── html   # front end code
+│   │   ├── doctor_interface.html   # front end code for doctor
+│   │   └── table_view.html  # front end code for the table of the doctor
 │   │
 │   ├── views.py   # back end code (for displaying images and put the diagnosis of the image in the database)
 │   ├── urls.py    # urls of the page 
@@ -38,7 +39,6 @@ project_directory/
 │   ├── models.py  # create the database with complete data
 │   └── ...
 │ 
-├── db.sqlite3      # database
 │
 ├── media/
 │   └── images.jpg    # images uploaded by the user
@@ -54,8 +54,9 @@ project_directory/
 │   
 ├── manage.py        # this is the python file that start django, it retrieves the settings with the project folder -> pipino doctorino and start the app -> dermachat
 │ 
-├── dockerignore     # i ignore folder like EDA that dont go inside the docker
-├── Dockerfile       # it build the docker
+├── docker-compose.yml  # it build the docker
+├── dockerignore        # i ignore folder like EDA that dont go inside the docker
+├── Dockerfile          # it build the docker
 │ 
 ├── pipfile          # this two files are like poetry for the virtual enviroment but without venv and the other files
 ├── pipfile.lock
