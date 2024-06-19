@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>DermaChat</h1>
+            <img src="{% static 'Title.jpg' %}" alt="DermaChat">
         </div>
         <div class="content">
             <div class="sidebar">
@@ -30,7 +30,7 @@
                 <img src="{{ image.url }}" id="displayed_image">
                 {% endif %}
                 {% if image %}
-                <h2>Your image was uploaded <b>successfully</b></h2>
+                <img src="{% static 'Upload.jpg' %}" alt="Uploaded Image">
                 {% endif %}
             </div>
         </div>

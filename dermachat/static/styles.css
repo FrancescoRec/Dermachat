@@ -1,15 +1,21 @@
 /* Reset default browser styles */
 * {
-    margin: 0;
-    padding: 0;
+    margin: 10;
+    padding: 10;
     box-sizing: border-box;
+
 }
+
 
 /* Global styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #07818C; /* Background color */
     color: white; /* Text color */
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    margin-bottom: 30px;
 }
 
 .container {
@@ -19,16 +25,21 @@ body {
 }
 
 .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
     text-align: center;
-    margin-bottom: 20px;
+    max-width: 100%; /* Adjust the maximum width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 500px; 
 }
 
-.header h1 {
-    font-size: 48px;
-    font-family: 'Arial Black', Arial, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.header img {
+    max-width: 70%; /* Reduce the size of the image to one-third */
+    height: auto; /* Maintain aspect ratio */
 }
+
 
 .content {
     display: flex;
@@ -41,6 +52,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: white;
+    border-radius: 50px;
 }
 
 .sidebar {
@@ -76,7 +88,8 @@ button[type="submit"], .custom-file-upload {
     font-size: 45px;
     font-weight: bold;
     font-family: Arial, sans-serif;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 400px;
     height: 150px;
     line-height: normal; /* Adjusted for better text centering */
