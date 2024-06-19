@@ -8,14 +8,14 @@
 /* Global styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #07818C; /* Changed background color to blue */
+    color: #C7E9EA; /* Changed text color to white */
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1000px; /* Increased max-width for larger content area */
     margin: 0 auto;
     padding: 20px;
-
 }
 
 .header {
@@ -23,61 +23,84 @@ body {
     margin-bottom: 20px;
 }
 
+.header h1 {
+    font-size: 48px; /* Increased font size */
+    font-family: 'Arial Black', Arial, sans-serif; /* Changed font to a bolder style */
+    text-transform: uppercase; /* Optional: Make the text uppercase */
+    letter-spacing: 2px; /* Optional: Add spacing between letters */
+}
+
 .content {
     display: flex;
+    gap: 20px; /* Add gap between flex items */
+}
+
+.sidebar, .main {
+    flex: 1;
+    padding: 30px; /* Increased padding for larger rectangles */
+    background-color: #ffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
 }
 
 .main {
-    flex: 2;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 400px; /* Increased fixed height for the main section */
 }
-
-.main.image {
-    text-align: center;
-    background-color: #fff;
-    height: 300px;
-}
-
 
 form {
     margin-bottom: 20px;
 }
 
-button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
+button[type="submit"], .custom-file-upload {
+    padding: 15px 30px; /* Increased padding for larger buttons */
+    background-color: #01515A; /* Slightly different blue for contrast */
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px; /* Increased font size */
+    font-family: Arial, sans-serif; /* Ensure same font family */
+    margin-top: 20px; /* Space between buttons */
+    width: 160px; /* Increased width */
+    height: 50px; /* Increased height */
+    line-height: 20px; /* Ensure vertical alignment of text */
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
-
+button[type="submit"]:hover, .custom-file-upload:hover {
+    background-color: #01515A; /* Darker shade for hover effect */
 }
 
-.main.image img {
+/* Hide the file input text */
+input[type="file"] {
+    display: none;
+}
+
+.main img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 8px;
-    margin: 0 auto;
     display: block;
+}
+
+/* Center h3 and make "successfully" bold */
+.main h3 {
+    color: #007bff; /* Same color as the background */
+    text-align: center; /* Center the text */
+    font-weight: normal;
+}
+
+.main h3 b {
+    font-weight: bold; /* Make "successfully" bold */
 }
