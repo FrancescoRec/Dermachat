@@ -19,7 +19,6 @@ body {
     height: auto; /* Maintain aspect ratio */
 }
 
-
 .container {
     width: 80%;
     margin: 0 auto;
@@ -37,7 +36,6 @@ h2 {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    
 }
 
 .prediction-container h1 {
@@ -106,7 +104,7 @@ button[type="look"] {
 
 button:hover, .custom-file-upload:hover {
     background-color: #FD9B82;
-    color: #01515A
+    color: #01515A;
 }
 
 .big-container {
@@ -169,7 +167,6 @@ button:hover, .custom-file-upload:hover {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    
 }
 
 .right-side label {
@@ -198,6 +195,26 @@ button:hover, .custom-file-upload:hover {
 .right-side input[type="checkbox"] {
     width: 30px; /* Adjust width for better alignment */
     height: 30px; /* Adjust height for better alignment */
+    appearance: none; /* Remove default checkbox styling */
+    border: 2px solid #01515A; /* Add border to custom checkbox */
+    background-color: #C7E9EA; /* Background color of checkbox */
+    border-radius: 5px; /* Rounded corners for checkbox */
+    position: relative;
+}
+
+.right-side input[type="checkbox"]:checked {
+    background-color: #FD9B82; /* Background color when checked */
+}
+
+.right-side input[type="checkbox"]:checked::before {
+    content: '\2714'; /* Unicode character for checkmark */
+    color: #01515A; /* Color for checkmark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px; /* Adjust size of checkmark */
+    line-height: 1; /* Ensure checkmark is not stretched */
 }
 
 .right-side .button {
