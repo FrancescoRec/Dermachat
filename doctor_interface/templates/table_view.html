@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{% static 'stylesT.css' %}">
 </head>
 <body>
-    <h1>Triage Line</h1>
     <table>
         <thead>
             <tr>
@@ -23,7 +22,7 @@
             <tr>
                 <td><a href="{% url 'images' %}?user_id={{ item.user_id }}">{{ item.user_id }}</a></td>
                 <td>{{ item.created_at }}</td>
-                <td>{{ item.prediction }}</td>
+                <td>{{ item.prediction|floatformat:4 }}</td>
             </tr>
             {% endfor %}
         </tbody>
