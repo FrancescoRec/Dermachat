@@ -3,6 +3,11 @@ body {
     background-color: #07818C;
 }
 
+h1 {
+    color: #C7E9EA;
+}
+
+
 .header {
     display: flex;
     justify-content: center;

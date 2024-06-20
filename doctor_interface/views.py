@@ -53,24 +53,25 @@ def table_view(request):
     
     pkl_file_name = ''
     for file in os.listdir(directory):
-        if file.endswith('.pkl'):
+        if file.endswith('.pth'):
             pkl_file_name = os.path.join(directory, file)
             break
+    
 
     data = ImageMetadata.objects.exclude(user_id__in=DoctorClassification.objects.values('user_id')).annotate(
         severity=Case(
-            When(prediction__gte=0, prediction__lte=20, then=Value('Very Low')),
-            When(prediction__gte=21, prediction__lte=40, then=Value('Low')),
-            When(prediction__gte=41, prediction__lte=60, then=Value('Moderate')),
-            When(prediction__gte=61, prediction__lte=80, then=Value('High')),
-            When(prediction__gte=81, prediction__lte=100, then=Value('Very High')),
+            When(prediction__gte=0, prediction__lte=0.20, then=Value('Very Low')),
+            When(prediction__gte=0.21, prediction__lte=0.40, then=Value('Low')),
+            When(prediction__gte=0.41, prediction__lte=0.60, then=Value('Moderate')),
+            When(prediction__gte=0.61, prediction__lte=0.80, then=Value('High')),
+            When(prediction__gte=0.81, prediction__lte=1, then=Value('Very High')),
             output_field=CharField(),
         )
     ).order_by('-prediction')
     
     context = {
         'data': data,
-        'pkl_file_name': pkl_file_name.replace('models/image_models/', '')
+        'pkl_file_name': pkl_file_name.replace('models/image_models/', '').replace('.pth', '')
     }
     
     return render(request, 'table_view.html', context)

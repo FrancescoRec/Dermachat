@@ -8,8 +8,8 @@ import os
 
 def get_model():
     """Load the model from the local file system and return it"""
-    model_name = 'Xception'
-    local_model_path = os.path.join('models', 'image_models', f'{model_name}_model.pth')
+    model_name = 'CRoF-jNet-01'
+    local_model_path = os.path.join('models', 'image_models', f'{model_name}.pth')
 
     model = timm.create_model('legacy_xception', pretrained=False)
     num_ftrs = model.fc.in_features
