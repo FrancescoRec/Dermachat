@@ -149,26 +149,78 @@ button:hover, .custom-file-upload:hover {
     display: block;
 }
 
+.right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 30px;
+    padding: 20px;
+}
+
 .right-side form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .right-side .form-group {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    
 }
 
 .right-side label {
     margin-right: 10px;
+    color: #fff; /* Cambia 'red' con il colore che preferisci */
+    font-weight: bold; /* Per rendere il testo del label più evidente */
+    padding: 5px; /* Aggiungi padding per maggiore spazio attorno al testo */
+    border-radius: 8px; /* Aggiungi bordi arrotondati */
+    margin-right: 10px; /* Aggiungi margine a destra per separare il label dal campo di input */
+    font-size: 40px; /* Cambia la dimensione del testo del label */
+    text-transform: uppercase; /* Trasforma il testo del label in maiuscolo */
+    letter-spacing: 1px; /* Aggiungi spazio tra le lettere */
 }
 
 .right-side select, .right-side input[type="checkbox"] {
     margin-right: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #01515A; /* Match with your button border */
+    background-color: #C7E9EA; /* Match with your background color */
+    color: black; /* White text for contrast */
+    font-size: 20px; /* Increase font size for better readability */
+    font-family: Arial, sans-serif; /* Match with your button font */
+}
+
+.right-side input[type="checkbox"] {
+    width: 30px; /* Adjust width for better alignment */
+    height: 30px; /* Adjust height for better alignment */
 }
 
 .right-side .button {
     align-self: center;
+    border-radius: 40px;
+    padding: 15px 30px;
+    background-color: #01515A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 400px;
+    height: 150px;
+    line-height: normal;
+}
+
+.right-side .button:hover {
+    background-color: #FD9B82;
+    color: #01515A;
 }

@@ -21,15 +21,15 @@
         <div class="big-container">
             <div class="left-side">
                 <div class="image-gallery">
+                    {% if image %}
                     <img src="{{ image.image.url }}">
                     <div class="prediction-container">
                         <h1>Prediction:</h1>
                         <div class="prediction_model">
-                            {% if image %}
                             <h2>{{ prediction }}</h2>
-                            {% endif %}
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="right-side">
