@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from dermachat.models import ImageMetadata
+from django.db.models import Case, When, Value, CharField
 from .models import DoctorClassification
 from django.core.files.base import ContentFile
 import os 
@@ -47,11 +48,29 @@ def doctor_classification_view(request):
     return render(request, 'doctor_interface.html')
 
 def table_view(request):
-    # Perform the query to get ImageMetadata records where user_id is not in DoctorClassification
-    data = ImageMetadata.objects.exclude(user_id__in=DoctorClassification.objects.values('user_id')).order_by('-prediction')
+
+    directory = 'models/image_models/'
+    
+    pkl_file_name = ''
+    for file in os.listdir(directory):
+        if file.endswith('.pkl'):
+            pkl_file_name = os.path.join(directory, file)
+            break
+
+    data = ImageMetadata.objects.exclude(user_id__in=DoctorClassification.objects.values('user_id')).annotate(
+        severity=Case(
+            When(prediction__gte=0, prediction__lte=20, then=Value('Very Low')),
+            When(prediction__gte=21, prediction__lte=40, then=Value('Low')),
+            When(prediction__gte=41, prediction__lte=60, then=Value('Moderate')),
+            When(prediction__gte=61, prediction__lte=80, then=Value('High')),
+            When(prediction__gte=81, prediction__lte=100, then=Value('Very High')),
+            output_field=CharField(),
+        )
+    ).order_by('-prediction')
     
     context = {
-        'data': data
+        'data': data,
+        'pkl_file_name': pkl_file_name.replace('models/image_models/', '')
     }
     
     return render(request, 'table_view.html', context)
