@@ -60,11 +60,9 @@ def table_view(request):
 
     data = ImageMetadata.objects.exclude(user_id__in=DoctorClassification.objects.values('user_id')).annotate(
         severity=Case(
-            When(prediction__gte=0, prediction__lte=0.20, then=Value('Very Low')),
-            When(prediction__gte=0.21, prediction__lte=0.40, then=Value('Low')),
-            When(prediction__gte=0.41, prediction__lte=0.60, then=Value('Moderate')),
-            When(prediction__gte=0.61, prediction__lte=0.80, then=Value('High')),
-            When(prediction__gte=0.81, prediction__lte=1, then=Value('Very High')),
+            When(prediction__gte=0, prediction__lte=0.40, then=Value('Low')),
+            When(prediction__gte=0.41, prediction__lte=0.59, then=Value('Moderate')),
+            When(prediction__gte=0.60, prediction__lte=1, then=Value('High')),
             output_field=CharField(),
         )
     ).order_by('-prediction')

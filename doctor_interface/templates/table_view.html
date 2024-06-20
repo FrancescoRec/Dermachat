@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <div class="header">
+        <h1 style="color: #C7E9EA">Triages</h1>
         <img src="{% static 'TitleDoctor.jpg' %}" alt="DermaChat">
     </div>
     <link rel="stylesheet" href="{% static 'stylesT.css' %}">
 </head>
 <body>
-    <h1 class="'Title">Triage</h1>
     <table>
         <thead>
             <tr>
@@ -26,7 +26,7 @@
                 <td><a href="{% url 'images' %}?user_id={{ item.user_id }}">{{ item.user_id }}</a></td>
                 <td>{{ item.created_at }}</td>
                 <td>{{ item.prediction|floatformat:4 }}</td>
-                <td>{{ item.severity }}</td>
+                <td class="{% if item.severity == 'High' %}high-severity{% elif item.severity == 'Moderate' %}moderate-severity{% elif item.severity == 'Low' %}low-severity{% endif %}">{{ item.severity }}</td>
                 <td>{{ pkl_file_name }}</td>
             </tr>
             {% endfor %}
