@@ -1,35 +1,12 @@
-<!-- templates/table_view.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Triage Line</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #fff;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <div class="header">
+        <img src="{% static 'TitleTriage.jpg' %}" alt="DermaChat">
+    </div>
+    <link rel="stylesheet" href="{% static 'stylesT.css' %}">
 </head>
 <body>
     <h1>Triage Line</h1>

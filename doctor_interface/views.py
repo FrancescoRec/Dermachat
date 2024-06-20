@@ -17,7 +17,7 @@ def get_images(request):
     prediction = image.prediction
     return render(request, 'doctor_interface.html', {'image': image,
                                                         'user_id': user_id,
-                                                        'prediction': prediction})
+                                                        'prediction': round(prediction,4)})
     
 
 def doctor_classification_view(request):
