@@ -1,6 +1,24 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #07818C;
 }
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    text-align: center;
+    max-width: 100%; /* Adjust the maximum width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 500px; 
+}
+
+.header img {
+    max-width: 60%; /* Reduce the size of the image to one-third */
+    height: auto; /* Maintain aspect ratio */
+}
+
 
 .container {
     width: 80%;
@@ -13,70 +31,144 @@ h2 {
     margin-bottom: 20px;
 }
 
-.button {
+.prediction-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    
+}
+
+.prediction-container h1 {
+    font-size: 28px;
+    color: #07818C;
+    margin-right: 5px;
+}
+
+.prediction-container .prediction_model {
+    font-size: 36px;
+    color: white;
+    background-color: #07818C;
+    padding: 10px 20px;
+    border-radius: 10px;
     display: inline-block;
+    height: 50px;
+    line-height: 0px;
+    margin-right: 20px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#query-input {
+    padding: 8px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+button[type="submit"], .custom-file-upload {
+    border-radius: 40px; /* More rounded corners */
+    padding: 15px 30px;
+    background-color: #01515A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 400px;
+    height: 150px;
+    line-height: normal; /* Adjusted for better text centering */
+}
+
+button[type="look"] {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     margin: 10px;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #01515A;
     color: #fff;
     text-decoration: none;
+    border: none;
+}
+
+button:hover, .custom-file-upload:hover {
+    background-color: #FD9B82;
+    color: #01515A
 }
 
 .big-container {
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
-    border: 2px solid #007bff;
     border-radius: 10px;
-    background-color: #f0f0f0;
-    min-height: 200px;
+    background-color: #07818C;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    height: 400px;
+    width: 45%;
     margin-bottom: 20px;
 }
 
-.menu {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 80px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.menu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.menu a:hover {
-    background-color: #ddd;
-}
-
-#x {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    border: 2px solid #007bff;
-    border-radius: 10px;
-    background-color: #f0f0f0;
-}
-
-#query-input {
-    margin-bottom: 10px;
-    padding: 8px;
-    width: calc(100% - 80px);
-}
-
-#content-container {
-    margin-top: 20px;
-}
-.img-gallery img {
+.left-side img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 8px;
+    display: block;
+}
+
+.left-side, .right-side {
+    width: 45%;
+}
+
+.image-gallery img {
+    max-width: 100%;
+    max-height: 300px; /* Ensure image fits within the container */
+    border-radius: 8px;
     margin: 0 auto;
     display: block;
+}
+
+.right-side form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.right-side .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.right-side label {
+    margin-right: 10px;
+}
+
+.right-side select, .right-side input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.right-side .button {
+    align-self: center;
 }
