@@ -56,21 +56,21 @@ tr:nth-child(even) {
 
 .high-severity {
     background-color: rgb(179, 34, 34);
-    color: white;
+    color: rgb(67, 0, 0);
     border: 2px solid darkred;
     font-weight: bold;
 }
 
 .moderate-severity {
-    background-color: yellow;
-    color: darkorange;
-    border: 2px solid orange;
+    background-color: rgb(214, 106, 18);
+    color: rgb(91, 54, 9);
+    border: 2px solid rgb(91, 59, 1);
     font-weight: bold;
 }
 
 .low-severity {
-    background-color: green;
-    color: white;
+    background-color: rgb(53, 181, 53);
+    color: rgb(11, 83, 2);
     border: 2px solid darkgreen;
     font-weight: bold;
 }
