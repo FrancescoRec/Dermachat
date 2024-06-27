@@ -27,10 +27,6 @@ This is a Django-based web application designed for managing medical images. The
 - [Interfaces](#interfaces)
 - [Credits](#credits)
 
-## Project Description
-
-DermaChat facilitates seamless dermatological consultations by allowing patients to upload images and information, which dermatologists can then review and provide feedback on. The app also manages triage lines, ensuring that cases are prioritized and handled appropriately.
-
 ## Installation
 
 1. Clone the repository:
