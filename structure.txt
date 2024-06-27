@@ -44,13 +44,18 @@ project_directory/
 │   └── images.jpg    # images uploaded by the user
 │
 ├── models/          # our models
-│   ├── chatbot_features  # code of the image models
-│   └── image_models      # code of the text models
+│   ├── chatbot_features  # code of the text models
+│   └── image_models      # code of the image models
+│
+├── modeling/          # notebook for modeling
+│   └── notebooks      # code for models
 │
 ├── EDA/             # EDA to obtain the merged csv that we have to put in the database
 │   ├── Fitzpatrick
 │   ├── DDI
 │   └── combined     # code for merging the csv 
+│
+├── Skin Image Classification Explainability using Grad-CAM.ipynb  # notebook for the explainability of the model
 │   
 ├── manage.py        # this is the python file that start django, it retrieves the settings with the project folder -> pipino doctorino and start the app -> dermachat
 │ 
