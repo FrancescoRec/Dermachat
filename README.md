@@ -9,6 +9,7 @@ This is a Django-based web application designed for managing medical images. The
 - [Usage](#usage)
 - [Models](#models)
 - [Interfaces](#interfaces)
+- [Credits](#credits)
 
 ## Installation
 
@@ -62,3 +63,6 @@ AWS_STORAGE_BUCKET_NAME=your_s3_bucket_name
 
 2. Access the application in your browser at `http://127.0.0.1:8000/`.
 
+## Credits
+
+Olga Beliai, Jorge Corro, Francesco D’aleo, Raphaelle Smyth, Carlos Varela
