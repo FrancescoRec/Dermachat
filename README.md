@@ -2,19 +2,19 @@
 
 This is a Django-based web application designed for managing medical images. The app has three main interfaces: one for patients, and two for doctors.
 
-## Project Description
-
-DermaChat facilitates seamless dermatological consultations by allowing patients to upload images and information, which dermatologists can then review and provide feedback on. The app also manages triage lines, ensuring that cases are prioritized and handled appropriately.
-
-
 ## Table of Contents
 
+- [Project Description](#project-description)
 - [Installation](#installation)
 - [Environment Variables](#environment-variables)
 - [Usage](#usage)
 - [Models](#models)
 - [Interfaces](#interfaces)
 - [Credits](#credits)
+
+## Project Description
+
+DermaChat facilitates seamless dermatological consultations by allowing patients to upload images and information, which dermatologists can then review and provide feedback on. The app also manages triage lines, ensuring that cases are prioritized and handled appropriately.
 
 ## Installation
 
@@ -70,8 +70,8 @@ AWS_STORAGE_BUCKET_NAME=your_s3_bucket_name
 
 ## Credits
 
-Olga Beliai: https://github.com/Gliese8
-Carlos Varela: https://github.com/CarlosVarelaGreen
-Francesco D’aleo: https://github.com/FrancescoRec 
-Raphaelle Smyth: https://github.com/rsmythrepo
-Jorge Corro: https://github.com/JorgeCCorroV
+- Olga Beliai: https://github.com/Gliese8
+- Carlos Varela: https://github.com/CarlosVarelaGreen
+- Francesco D’aleo: https://github.com/FrancescoRec 
+- Raphaelle Smyth: https://github.com/rsmythrepo
+- Jorge Corro: https://github.com/JorgeCCorroV
