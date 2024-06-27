@@ -19,7 +19,6 @@ This is a Django-based web application designed for managing medical images. The
 
 ## Table of Contents
 
-- [Project Description](#project-description)
 - [Installation](#installation)
 - [Environment Variables](#environment-variables)
 - [Usage](#usage)
