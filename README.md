@@ -1,5 +1,20 @@
 # DermaChat 🏥 
 
+### Intro
+
+During the master program, our team has focused on designing, building, and testing a Big Data and A.I. solution for skin cancer detection and optimizing of the melanoma dermatology triage process. Our initial approach involved design thinking techniques to identify a problem that could be addressed using big data and artificial intelligence for healthcare.
+
+Artificial intelligence (AI) has emerged as a transformative technology in healthcare, offering significant potential to enhance diagnostic accuracy, streamline workflows, and optimize patient care. AI's ability to analyze large datasets and identify patterns that may not be readily apparent to human observers positions it as a valuable tool in addressing pressing healthcare challenges, including skin cancer detection and triage optimization.
+
+### Hypothesis
+We postulate that the development of a machine learning (ML) model for melanoma classification can automate triage processes for specialists, thereby enhancing efficiency and accuracy in diagnostic procedures. This hypothesis aims to expedite diagnosis for patients requiring immediate attention.
+
+### Solution
+In response to this problem, we conceived DermaChat, a platform leveraging AI capabilities for melanoma classification to streamline dermatology triage. By enhancing diagnostic speed and accuracy, DermaChat ensures timely and effective care delivery to high-risk patients while facilitating seamless interaction between patients and dermatology specialists.
+
+DermaChat stands to transform dermatological care delivery, offering a comprehensive solution that empowers both patients and healthcare providers in navigating the complexities of melanoma diagnosis and treatment.
+In this segment, we will summarize the process and the solution proposed.
+
 This is a Django-based web application designed for managing medical images. The app has three main interfaces: one for patients, and two for doctors.
 
 ## Table of Contents
@@ -70,8 +85,8 @@ AWS_STORAGE_BUCKET_NAME=your_s3_bucket_name
 
 ## Credits
 
-- Olga Beliai: https://github.com/Gliese8
-- Carlos Varela: https://github.com/CarlosVarelaGreen
-- Francesco D’aleo: https://github.com/FrancescoRec 
-- Raphaelle Smyth: https://github.com/rsmythrepo
-- Jorge Corro: https://github.com/JorgeCCorroV
+- Olga Beliai:  https://github.com/Gliese8
+- Carlos Varela:  https://github.com/CarlosVarelaGreen
+- Francesco D’aleo:  https://github.com/FrancescoRec 
+- Raphaelle Smyth:  https://github.com/rsmythrepo
+- Jorge Corro:  https://github.com/JorgeCCorroV
