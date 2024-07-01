@@ -11,16 +11,16 @@ class ImageMetadata(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     prediction = models.FloatField(default=0.0)
 
-    # Define the string representation of the model
+    # Definisci la stringa di rappresentazione dell'oggetto
     def __str__(self):
         return str(self.user_id)
     
-    # Define the filename property
+    # Definisci il nome del file
     @property
     def filename(self):
         filename = f"{self.created_at}_{self.user_id}.jpg"  
         return filename
     
-    # Define the name of the database table
+    # Definisci la tabella del database
     class Meta:
         db_table = "dermachat_database"
