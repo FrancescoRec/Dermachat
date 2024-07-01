@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+# Modello per i metadati delle immagini
 class ImageMetadata(models.Model):
     """Model to store metadata of images uploaded by users"""
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

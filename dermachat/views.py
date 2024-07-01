@@ -4,6 +4,7 @@ from .models import ImageMetadata
 from .forms import ImageUploadForm
 from .helper import obtain_prediction    
     
+# Codice per la view che permette di caricare un'immagine e ottenere la predizione
 def upload_image(request):
     """Upload an image and return the prediction and upload the image to the database"""
 
